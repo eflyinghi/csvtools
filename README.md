@@ -158,6 +158,7 @@ functions definition.
 examples:
   `cat file.csv | csvmap 'r.ratio = r.a / r.b, r.b *= 1000'` assuming that file.csv contain columns `a` and `b`,
 introduces a new column `ratio` containing the `a / b`. Also multiplies column `b` by `1000`.
+
   `cat file.csv | csvmap 'r.root_a = sqrt(r.a)' --exec 'from numpy import sqrt'` assuming that file.csv contains column
 `a`, introduces a new column `root_a` containing `sqrt(a)`. Prior to running the row transformation, imports sqrt
 function from numpy.
