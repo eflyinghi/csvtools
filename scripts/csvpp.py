@@ -7,6 +7,13 @@ EXAMPLES = 'example: cat file.txt | csvpp -f | less -SR'
 
 
 def print_row(row, column_widths, output_stream):
+    """
+    Prints a row in human-readable format taking column widths into account
+
+    :param row: row represented as a list of columns
+    :param column_widths: a list of column list widths to be used for pretty printing
+    :param output_stream: a stream to pretty print the row
+    """
     output_line = '|'
     for i, column in enumerate(row):
         output_line += ' ' + column + ' ' * (column_widths[i] - len(column) + 1) + '|'
