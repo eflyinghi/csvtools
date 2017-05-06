@@ -284,3 +284,40 @@ colors.
 
 examples:
   `cat stat.csv | csvsort -k shows`
+
+### csvjoin
+
+usage: `csvjoin [-h] [-s SEPARATOR] [-o OUTPUT_FILE] [-k KEYS] [-c CONFLICT_PREFIX] [-t TYPE] file2 [file]`
+
+Join two csv files using the keys provided.
+
+positional arguments:
+  `file`
+  > File to read input from. stdin is used by default
+
+  `file2`
+  > File to join with
+
+optional arguments:
+  `-h, --help`
+  > show help message and exit
+
+  `-s SEPARATOR, --separator SEPARATOR`
+  > Separator to be used
+
+  `-k KEYS, --fields KEYS`
+  > Comma-separated list of columns to be used as reduce keys. Column names or column numbers can be used here. These
+columns will be used as the join keys.
+
+  `-c CONFLICT_PREFIX, --conflict_prefix CONFLICT_PREFIX`
+  > Specify a prefix to be used for the columns taken from file2 having the same names. Default is `conflict_`
+
+  `-t TYPE, --type TYPE`
+  > Type of join to be used. Either `INNER`, `LEFT` or `OUTER`. `INNER` is default.
+
+  `-o OUTPUT_FILE, --output_file OUTPUT_FILE`
+  > Output file. stdout is used by default
+
+examples:
+  `csvjoin stat1.txt stat2.txt -k id, -t OUTER`
+
