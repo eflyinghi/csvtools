@@ -205,7 +205,7 @@ examples:
     `cat table.txt | tabreduce -r sum('price', 'overall_price'),count` assuming that `table.txt` has a column named
 `price`, the result will be a table containing just a single row with columns named `overall_price` and `count`.
 
-    `cat flat_prices.csv | tabreduce -k type,district -r max('price'),min('price'),mean('price'),avg('square')` assuming
+    `cat flat_prices.csv | tabreduce -k type,district -a max('price'),min('price'),mean('price'),avg('square')` assuming
 that `flat_prices.csv` has columns name `price` and `district`, the result will be a table containing the maximum,
 minimum and average price and average square of a flat for each district and commercial type.
 
