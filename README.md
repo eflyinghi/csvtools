@@ -4,7 +4,7 @@ CLI tools useful to work with csv files. Below is the documentation for each too
 
 ### csvpp
 
-usage: `csvpp [-h] [-s SEPARATOR] [-n LINES_NUMBER] [-f] [-o OUTPUT_FILE] [file]`
+usage: `csvpp [-h] [-q] [--careful] [-s SEPARATOR] [-n LINES_NUMBER] [-f] [-o OUTPUT_FILE] [file]`
 
 Print csv file in human-readable format.
 Input is taken from STDIN by default.
@@ -17,6 +17,12 @@ positional arguments:
 optional arguments:
   `-h, --help`
   > show help message and exit
+
+  `-q, --quiet`
+  > Don't print information regarding errors
+
+  `--careful`
+  > Stop if input contains an incorrect row
 
   `-s SEPARATOR, --separator SEPARATOR`
   > Separator to be used
@@ -36,7 +42,7 @@ examples:
 
 ### csvcut
 
-usage: `csvcut [-h] [-s SEPARATOR] [-o OUTPUT_FILE] [-f FIELDS] [-c] [-u] [file]`
+usage: `csvcut [-h] [-q] [--careful] [-s SEPARATOR] [-o OUTPUT_FILE] [-f FIELDS] [-c] [-u] [file]`
 
   Select some columns from csv streem.
   Could change order of fields.
@@ -48,6 +54,12 @@ positional arguments:
 optional arguments:
   `-h, --help`
   > show help message and exit
+
+  `-q, --quiet`
+  > Don't print information regarding errors
+
+  `--careful`
+  > Stop if input contains an incorrect row
 
   `-s SEPARATOR, --separator SEPARATOR`
   > Separator to be used
@@ -81,7 +93,7 @@ examples:
 
 ### csvhead
 
-usage: `csvhead [-h] [-o OUTPUT_FILE] [-n ROWS_COUNT] [file]`
+usage: `csvhead [-h] [-q] [--careful] [-o OUTPUT_FILE] [-n ROWS_COUNT] [file]`
 
 Print header and first lines of input.
 
@@ -92,6 +104,12 @@ positional arguments:
 optional arguments:
   `-h, --help`
   > show help message and exit
+
+  `-q, --quiet`
+  > Don't print information regarding errors
+
+  `--careful`
+  > Stop if input contains an incorrect row
 
   `-n ROWS_COUNT, --number_of_lines ROWS_COUNT`
   > Number of first rows to print
@@ -105,7 +123,7 @@ examples:
 
 ### csvtail
 
-usage: `csvtail [-h] [-o OUTPUT_FILE] [-n ROWS_COUNT] [file]`
+usage: `csvtail [-h] [-q] [--careful] [-o OUTPUT_FILE] [-n ROWS_COUNT] [file]`
 
 Print header and last lines of input.
 
@@ -116,6 +134,12 @@ positional arguments:
 optional arguments:
   `-h, --help`
   > show help message and exit
+
+  `-q, --quiet`
+  > Don't print information regarding errors
+
+  `--careful`
+  > Stop if input contains an incorrect row
 
   `-n ROWS_COUNT, --number_of_lines ROWS_COUNT`
   > Number of last rows to print if positive `ROWS_COUNT`. Else skips `ROWS_COUNT` lines and prints till the end of
@@ -130,7 +154,7 @@ examples:
 
 ### csvmap
 
-usage: `csvmap [-h] [-s SEPARATOR] [-o OUTPUT_FILE] [-e EXEC] expression [file]`
+usage: `csvmap [-h] [-q] [--careful] [-s SEPARATOR] [-o OUTPUT_FILE] [-e EXEC] expression [file]`
 
 Transform each row of a csv file with an expression provided.
 
@@ -144,6 +168,12 @@ positional arguments:
 optional arguments:
   `-h, --help`
   > show help message and exit
+
+  `-q, --quiet`
+  > Don't print information regarding errors
+
+  `--careful`
+  > Stop if input contains an incorrect row
 
   `-s SEPARATOR, --separator SEPARATOR`
   > Separator to be used
@@ -165,7 +195,8 @@ function from numpy.
 
 ### csvreduce
 
-usage: `csvreduce [-h] [-s SEPARATOR] [-o OUTPUT_FILE] [-k KEYS] [-i INTEGRATION_STEP] [-a AGGREGATORS] [--no-sort] [file]`
+usage: `csvreduce [-h] [-q] [--careful] [-s SEPARATOR] [-o OUTPUT_FILE] [-k KEYS] [-i INTEGRATION_STEP]
+[-a AGGREGATORS] [--no-sort] [file]`
 
 Reduces csv file using the KEYS provided. Reducing is a process of aggregating rows with the same keys by applying
 AGGREGATORS to them. In other words, the rows will be grouped by the KEYS duting the aggregation process.
@@ -177,6 +208,12 @@ positional arguments:
 optional arguments:
   `-h, --help`
   > show help message and exit
+
+  `-q, --quiet`
+  > Don't print information regarding errors
+
+  `--careful`
+  > Stop if input contains an incorrect row
 
   `-s SEPARATOR, --separator SEPARATOR`
   > Separator to be used
@@ -211,7 +248,8 @@ minimum and average price and average square of a flat for each district and com
 
 ### csvsort
 
-usage: `csvsort [-h] [-s SEPARATOR] [-o OUTPUT_FILE] [-k KEYS] [-m MAX_ROWS] [--descending] [--numeric] [file]`
+usage: `csvsort [-h] [-q] [--careful] [-s SEPARATOR] [-o OUTPUT_FILE] [-k KEYS] [-m MAX_ROWS] [--descending]
+[--numeric] [file]`
 
   Sort the rows of csv stream ascending.
 
@@ -222,6 +260,12 @@ positional arguments:
 optional arguments:
   `-h, --help`
   > show help message and exit
+
+  `-q, --quiet`
+  > Don't print information regarding errors
+
+  `--careful`
+  > Stop if input contains an incorrect row
 
   `-s SEPARATOR, --separator SEPARATOR`
   > Separator to be used
@@ -251,7 +295,8 @@ examples:
 
 ### csvplot
 
-usage: `csvplot [-h] [-s SEPARATOR] [-o OUTPUT_FILE] [-x KEY] [-y KEYS] [--xlabel LABEL] [-ylabels LABELS] [file]`
+usage: `csvplot [-h] [-q] [--careful] [-s SEPARATOR] [-o OUTPUT_FILE] [-x KEY] [-y KEYS] [--xlabel LABEL]
+[-ylabels LABELS] [file]`
 
   Plot the data based on csv file contents.
 
@@ -262,6 +307,12 @@ positional arguments:
 optional arguments:
   `-h, --help`
   > show help message and exit
+
+  `-q, --quiet`
+  > Don't print information regarding errors
+
+  `--careful`
+  > Stop if input contains an incorrect row
 
   `-s SEPARATOR, --separator SEPARATOR`
   > Separator to be used
@@ -287,7 +338,8 @@ examples:
 
 ### csvjoin
 
-usage: `csvjoin [-h] [-s SEPARATOR] [-o OUTPUT_FILE] [-k KEYS] [-c CONFLICT_PREFIX] [-t TYPE] file2 [file]`
+usage: `csvjoin [-h] [-q] [--careful] [-s SEPARATOR] [-o OUTPUT_FILE] [-k KEYS] [-c CONFLICT_PREFIX] [-t TYPE]
+file2 [file]`
 
 Join two csv files using the keys provided.
 
@@ -301,6 +353,12 @@ positional arguments:
 optional arguments:
   `-h, --help`
   > show help message and exit
+
+  `-q, --quiet`
+  > Don't print information regarding errors
+
+  `--careful`
+  > Stop if input contains an incorrect row
 
   `-s SEPARATOR, --separator SEPARATOR`
   > Separator to be used
