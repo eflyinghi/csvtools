@@ -130,7 +130,7 @@ examples:
 
 ### csvmap
 
-usage: `csvmap [-h] [-s SEPARATOR] [-o OUTPUT_FILE] [-e EXEC] [expression] [file]`
+usage: `csvmap [-h] [-s SEPARATOR] [-o OUTPUT_FILE] [-e EXEC] expression [file]`
 
 Transform each row of a csv file with an expression provided.
 
