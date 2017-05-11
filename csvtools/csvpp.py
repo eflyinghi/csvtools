@@ -23,7 +23,7 @@ def print_row(row, column_widths, output_stream, careful, quiet):
     output_line = '|'
     for i, column in enumerate(row):
         width = column_widths[i] if i < len(column_widths) else 0
-        output_line += ' ' + column + ' ' * (width - len(column) + 1) + '|'
+        output_line += ' ' + column + ' ' * (width - len(column)) + ' |'
     output_line += '\n'
     output_stream.write(output_line)
 
