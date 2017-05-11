@@ -195,11 +195,10 @@ function from numpy.
 
 ### csvreduce
 
-usage: `csvreduce [-h] [-q] [--careful] [-s SEPARATOR] [-o OUTPUT_FILE] [-k KEYS] [-i INTEGRATION_STEP]
-[-a AGGREGATORS] [--no-sort] [file]`
+usage: `csvreduce [-h] [-q] [--careful] [-s SEPARATOR] [-o OUTPUT_FILE] [-k KEYS] [-a AGGREGATORS] [file]`
 
 Reduces csv file using the KEYS provided. Reducing is a process of aggregating rows with the same keys by applying
-AGGREGATORS to them. In other words, the rows will be grouped by the KEYS duting the aggregation process.
+AGGREGATORS to them. In other words, the rows will be grouped by the KEYS during the aggregation process.
 
 positional arguments:
   `file`
@@ -224,9 +223,6 @@ optional arguments:
   `-k KEYS, --keys KEYS`
   > Comma-separated list of columns to be used as reduce keys. Column names or column numbers can be used here
 
-  `-i INTEGRATION_STEP, --integration_step INTEGRATION_STEP`
-  > Divide each aggregation group into smaller groups each containing `INTEGRATION_STEP` rows.
-
   `-a AGGREGATORS, --agregators AGGREGATORS`
   > Comma-separated list of value-aggregators. Each aggregator might be one of the following: `first`, `last`, `sum`,
 `mean`, `min`, `max`, `std` (standard deviation), count. Each aggragator (except count) is a function expecting 2
@@ -234,16 +230,13 @@ arguments: column name or number and the resulting field name. The resulting fie
 `$AGGREGATOR_NAME_$FIRST_ARGUMENT'` (e.g. for `sum('a')` it will have a default value of `sum_a`). Please see the
 examples for more details.
 
-  `--no-sort`
-  > If provided, the input will not be sorted prior to reduce operation. Be careful, that might lead to an incorrect
-reduce result. If your input is already sorted by the KEYS, this option will significantly speed up the reduce.
-
 examples:
-    `cat table.txt | tabreduce -r sum('price', 'overall_price'),count` assuming that `table.txt` has a column named
-`price`, the result will be a table containing just a single row with columns named `overall_price` and `count`.
+    `cat csvle.txt | csvreduce -r sum('price', 'overall_price'),count` assuming that `csvle.txt` has a column named
+`price`, the result will be a csvle containing just a single row with columns named `overall_price` and `count`.
 
-    `cat flat_prices.csv | tabreduce -k type,district -a max('price'),min('price'),mean('price'),avg('square')` assuming
-that `flat_prices.csv` has columns name `price` and `district`, the result will be a table containing the maximum,
+    `cat flat_prices.csv | csvreduce -k type,district -a max('price'),min('price'),mean('price'),avg('square')`
+assuming
+that `flat_prices.csv` has columns name `price` and `district`, the result will be a csvle containing the maximum,
 minimum and average price and average square of a flat for each district and commercial type.
 
 ### csvsort
