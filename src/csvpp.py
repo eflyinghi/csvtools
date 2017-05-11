@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 import sys
 
-from utils import report_error, report_wrong_number_of_columns, InputError
+from . utils import report_error, report_wrong_number_of_columns, InputError
 
 DESCRIPTION = 'csvpp - prints cvs file in human-readable format'
 EXAMPLES = 'example: cat file.txt | csvpp -f | less -SR'
@@ -14,8 +14,10 @@ def print_row(row, column_widths, output_stream, careful, quiet):
     :param row: row represented as a list of columns
     :param column_widths: a list of column list widths to be used for pretty printing
     :param output_stream: a stream to pretty print the row
+    :param careful: raise an exception on incorrect rows
+    :param quiet: don't report non-critical errors
     """
-    if (len(column_widths) != len(row)):
+    if len(column_widths) != len(row):
         report_wrong_number_of_columns(row, careful, quiet)
 
     output_line = '|'
@@ -30,9 +32,9 @@ def main(args):
     input_stream = sys.stdin
     output_stream = sys.stdout
     try:
-        if (args.file):
+        if args.file:
             input_stream = open(args.file, 'r')
-        if (args.output_file):
+        if args.output_file:
             output_stream = open(args.output_file, 'w')
 
         columns = input_stream.readline().strip().split(args.separator)
@@ -41,7 +43,7 @@ def main(args):
             row = line.strip().split(args.separator)
             first_rows.append(row)
             # Read no more than lines_number first lines
-            if (len(first_rows) > args.lines_number):
+            if len(first_rows) > args.lines_number:
                 break
 
         column_widths = [max([len(column) for column in [row[i] if i < len(row) else '' for row in first_rows]])
@@ -54,7 +56,7 @@ def main(args):
                       args.careful, args.quiet)
 
     except FileNotFoundError:
-        report_error("File {} doen't exist".format(args.file))
+        report_error("File {} doesn't exist".format(args.file))
     except InputError as e:
         report_error(e.message + '. Row: ' + str(e.expression))
     except KeyboardInterrupt:
