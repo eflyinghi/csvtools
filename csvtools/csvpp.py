@@ -28,7 +28,7 @@ def print_row(row, column_widths, output_stream, careful, quiet):
     output_stream.write(output_line)
 
 
-def main(args):
+def pretty_print(args):
     input_stream = sys.stdin
     output_stream = sys.stdout
     try:
@@ -91,4 +91,4 @@ def parse_args():
 
 
 if __name__ == '__main__':
-    main(parse_args())
+    pretty_print(parse_args())
